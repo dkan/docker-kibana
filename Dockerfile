@@ -8,23 +8,23 @@ RUN apt-get update && \
     apt-get -y install curl ucspi-tcp apache2-utils nginx ruby
 
 ENV KIBI_44_VERSION 4.4.1-2
-ENV KIBI_44_SHA1SUM 6ab1b53644d86b70659407c84612fbe42625d9bb
+ENV KIBI_44_SHA1SUM 040bb6331df0e94e05223681fdd83de9cfa280f9
 
 # Kibi 4.4.1
 RUN curl -O "https://codeload.github.com/sirensolutions/kibi/zip/tag-4.4.1-2" && \
-    echo "${KIBI_44_SHA1SUM}  kibi-${KIBI_44_VERSION}-linux-x64.tar.gz" | sha1sum -c - && \
-    tar xzf "kibi-${KIBI_44_VERSION}-linux-x64.tar.gz" -C /opt && \
-    rm "kibi-${KIBI_44_VERSION}-linux-x64.tar.gz"
+    echo "${KIBI_44_SHA1SUM}  kibi-tag-${KIBI_44_VERSION}.zip" | sha1sum -c - && \
+    tar xzf "tag-${KIBI_44_VERSION}" -C /opt && \
+    rm "tag-${KIBI_44_VERSION}"
 
 # Overwrite default nginx config with our config.
 RUN rm /etc/nginx/sites-enabled/*
 ADD templates/sites-enabled /
 
-RUN rm "/opt/kibi-${KIBI_44_VERSION}-linux-x64/config/kibi.yml"
-ADD templates/opt/kibi-4.4.x/ /opt/kibi-${KIBI_44_VERSION}/config
+RUN rm "/opt/kibi-tag-${KIBI_44_VERSION}/config/kibi.yml"
+ADD templates/opt/kibi-4.4.x/ /opt/kibi-tag-${KIBI_44_VERSION}/config
 
 ADD patches /patches
-RUN patch -p1 -d "/opt/kibi-${KIBI_44_VERSION}-linux-x64" < /patches/0001-Set-authorization-header-when-connecting-to-ES.patch
+RUN patch -p1 -d "/opt/kibi-tag-${KIBI_44_VERSION}" < /patches/0001-Set-authorization-header-when-connecting-to-ES.patch
 
 # Add script that starts NGiNX in front of Kibana and tails the NGiNX access/error logs.
 ADD bin .
