@@ -13,7 +13,7 @@ ENV KIBI_44_SHA1SUM ae53c8085252d938c017c1a5d1540fe0b11b22ff
 # Kibi 4.4.1
 RUN curl -LOk "https://github.com/sirensolutions/kibi/releases/download/tag-4.4.1-2/kibi-4.4.1-2-linux-x64.zip" && \
     echo "${KIBI_44_SHA1SUM}  kibi-${KIBI_44_VERSION}-linux-x64.zip" | sha1sum -c - && \
-    unzip "kibi-${KIBI_44_VERSION}-linux-x64.zip" -d /opt && \
+    tar -xz "kibi-${KIBI_44_VERSION}-linux-x64.zip" -C /opt && \
     rm "kibi-${KIBI_44_VERSION}-linux-x64.zip"
 
 # Overwrite default nginx config with our config.
