@@ -21,7 +21,7 @@ RUN curl -LOk "https://github.com/sirensolutions/kibi/releases/download/tag-4.4.
 RUN rm /etc/nginx/sites-enabled/*
 ADD templates/sites-enabled /
 
-RUN rm "/opt/kibi-kibi-${KIBI_44_VERSION}-linux-x64/config/kibi.yml"
+RUN rm "/opt/kibi-${KIBI_44_VERSION}-linux-x64/config/kibi.yml"
 ADD templates/opt/kibi-4.4.x/ /opt/kibi-kibi-${KIBI_44_VERSION}-linux-x64/config
 
 ADD patches /patches
