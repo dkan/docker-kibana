@@ -22,7 +22,7 @@ RUN rm /etc/nginx/sites-enabled/*
 ADD templates/sites-enabled /
 
 RUN rm "/opt/kibi-${KIBI_44_VERSION}-linux-x64/config/kibi.yml"
-ADD templates/opt/kibi-4.4.x/ /opt/kibi-kibi-${KIBI_44_VERSION}-linux-x64/config
+ADD templates/opt/kibi-4.4.x/ /opt/kibi-${KIBI_44_VERSION}-linux-x64/config
 
 ADD patches /patches
 RUN patch -p1 -d "/opt/kibi-${KIBI_44_VERSION}-linux-x64" < /patches/0001-Set-authorization-header-when-connecting-to-ES.patch
