@@ -11,7 +11,7 @@ ENV KIBI_44_VERSION 4.4.1-2
 ENV KIBI_44_SHA1SUM 6ab1b53644d86b70659407c84612fbe42625d9bb
 
 # Kibi 4.4.1
-RUN curl -O "https://codeload.github.com/sirensolutions/kibi/tar.gz/tag-4.4.1-2" && \
+RUN curl -LOk "https://github.com/sirensolutions/kibi/releases/download/tag-4.4.1-2/kibi-4.4.1-2-linux-x64.zip" && \
     echo "${KIBI_44_SHA1SUM}  tag-${KIBI_44_VERSION}" | sha1sum -c - && \
     tar xzf "tag-${KIBI_44_VERSION}" -C /opt && \
     rm "tag-${KIBI_44_VERSION}"
