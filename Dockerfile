@@ -5,7 +5,8 @@ RUN apt-get update && \
     apt-get install -y software-properties-common \
     python-software-properties && \
     add-apt-repository -y ppa:nginx/stable && apt-get update && \
-    apt-get -y install curl ucspi-tcp apache2-utils nginx ruby
+    apt-get -y install curl ucspi-tcp apache2-utils nginx ruby && \
+    apt-get install unzip
 
 ENV KIBI_44_VERSION 4.4.1-2
 ENV KIBI_44_SHA1SUM ae53c8085252d938c017c1a5d1540fe0b11b22ff
@@ -13,7 +14,7 @@ ENV KIBI_44_SHA1SUM ae53c8085252d938c017c1a5d1540fe0b11b22ff
 # Kibi 4.4.1
 RUN curl -LOk "https://github.com/sirensolutions/kibi/releases/download/tag-4.4.1-2/kibi-4.4.1-2-linux-x64.zip" && \
     echo "${KIBI_44_SHA1SUM}  kibi-${KIBI_44_VERSION}-linux-x64.zip" | sha1sum -c - && \
-    tar -xz "kibi-${KIBI_44_VERSION}-linux-x64.zip" -C /opt && \
+    unzip "kibi-${KIBI_44_VERSION}-linux-x64.zip" -d /opt && \
     rm "kibi-${KIBI_44_VERSION}-linux-x64.zip"
 
 # Overwrite default nginx config with our config.
