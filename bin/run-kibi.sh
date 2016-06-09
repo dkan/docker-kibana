@@ -45,7 +45,7 @@ KIBI_VERSION_PTR="KIBI_${KIBI_ACTIVE_VERSION}_VERSION"
 KIBI_VERSION="${!KIBI_VERSION_PTR}"
 
 # Run config
-erb -T 2 -r uri "/opt/kibi-${KIBI_VERSION}/config/kibi.yml.erb" > "/opt/kibi-tag-${KIBI_VERSION}/config/kibi.yml" || {
+erb -T 2 -r uri "/opt/kibi-${KIBI_VERSION}-linux-x64/config/kibi.yml.erb" > "/opt/kibi-${KIBI_VERSION}-linux-x64/config/kibi.yml" || {
   echo "Error creating kibi config file"
   exit 1
 }
@@ -55,4 +55,4 @@ service nginx start
 : ${NODE_OPTIONS:="--max-old-space-size=256"}
 
 export NODE_OPTIONS
-exec "/opt/kibi-tag-${KIBI_VERSION}/bin/kibi"
+exec "/opt/kibi-${KIBI_VERSION}-linux-x64/bin/kibi"
