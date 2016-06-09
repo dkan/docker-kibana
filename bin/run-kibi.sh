@@ -42,7 +42,7 @@ fi
 echo "KIBI_ACTIVE_VERSION is set to: '$KIBI_ACTIVE_VERSION'"
 
 KIBI_VERSION_PTR="KIBI_${KIBI_ACTIVE_VERSION}_VERSION"
-KIBI_VERSION="${!KIBI_VERSION_PTR}"
+KIBI_VERSION="4.4.1-2"
 
 # Run config
 erb -T 2 -r uri "/opt/kibi-${KIBI_VERSION}-linux-x64/config/kibi.yml.erb" > "/opt/kibi-${KIBI_VERSION}-linux-x64/config/kibi.yml" || {
