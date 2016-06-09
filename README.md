@@ -1,9 +1,9 @@
-# ![](https://gravatar.com/avatar/11d3bc4c3163e3d238d558d5c9d98efe?s=64) aptible/kibana
+# ![](https://gravatar.com/avatar/11d3bc4c3163e3d238d558d5c9d98efe?s=64) aptible/kibi
 
 [![Docker Repository on Quay.io](https://quay.io/repository/aptible/kibana/status)](https://quay.io/repository/aptible/kibana)
 [![Build Status](https://travis-ci.org/aptible/docker-kibana.svg?branch=master)](https://travis-ci.org/aptible/docker-kibana)
 
-Kibi as an Aptible app. This app automatically detects your Elasticsearch
+This app automatically detects your Elasticsearch
 version and starts Kibi 4.4
 
 

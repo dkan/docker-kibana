@@ -7,11 +7,11 @@ RUN apt-get update && \
     add-apt-repository -y ppa:nginx/stable && apt-get update && \
     apt-get -y install curl ucspi-tcp apache2-utils nginx ruby
 
-ENV KIBI_44_VERSION 4.4.1
+ENV KIBI_44_VERSION 4.4.1-2
 ENV KIBI_44_SHA1SUM 6ab1b53644d86b70659407c84612fbe42625d9bb
 
 # Kibi 4.4.1
-RUN curl -O "https://github.com/sirensolutions/kibi/archive/tag-4.4.1-2.tar.gz" && \
+RUN curl -O "https://codeload.github.com/sirensolutions/kibi/zip/tag-4.4.1-2" && \
     echo "${KIBI_44_SHA1SUM}  kibi-${KIBI_44_VERSION}-linux-x64.tar.gz" | sha1sum -c - && \
     tar xzf "kibi-${KIBI_44_VERSION}-linux-x64.tar.gz" -C /opt && \
     rm "kibi-${KIBI_44_VERSION}-linux-x64.tar.gz"
