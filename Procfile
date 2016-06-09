@@ -1,1 +1,1 @@
-web: ./run-kibana.sh
+web: ./run-kibi.sh
