@@ -14,34 +14,30 @@ use a different password for Kibana and Elasticsearch.
 
 diff --git a/src/plugins/elasticsearch/lib/map_uri.js b/src/plugins/elasticsearch/lib/map_uri.js
 index de78529..988f2d5 100644
---- a/src/plugins/elasticsearch/lib/map_uri.js
-+++ b/src/plugins/elasticsearch/lib/map_uri.js
-@@ -1,5 +1,6 @@
+--- map_uri.js.orig 2016-06-03 05:42:06.000000000 -0700
++++ map_uri.js  2016-06-09 13:04:29.000000000 -0700
+@@ -1,5 +1,5 @@
  var querystring = require('querystring');
 -var resolve = require('url').resolve;
 +var parseUrl = require('url').parse;
-+
- module.exports = function mapUri(server, prefix) {
+ module.exports = function mapUri(server, prefix, coordinateAction) {
    var config = server.config();
    return function (request, done) {
-@@ -9,8 +10,16 @@ module.exports = function mapUri(server, prefix) {
-       if (/\/$/.test(url)) url = url.substring(0, url.length - 1);
-       url += path;
+@@ -16,9 +16,16 @@
+       } else {
+         url += path;
+       }
++
++      var uri = parseUrl(url),
++      headers = {};
++      if (uri.auth) {
++        var auth = new Buffer(uri.auth);
++        headers.authorization = 'Basic ' + auth.toString('base64');
++      }
      }
-+
-+    var uri = parseUrl(url),
-+        headers = {};
-+    if (uri.auth) {
-+      var auth = new Buffer(uri.auth);
-+      headers.authorization = 'Basic ' + auth.toString('base64');
-+    }
-+
      var query = querystring.stringify(request.query);
      if (query) url += '?' + query;
 -    done(null, url);
 +    done(null, url, headers);
    };
  };
--- 
-2.7.1
-
