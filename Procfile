@@ -1,1 +1,3 @@
-web: ./run-kibi.sh
+web: ./run-oauthproxy.sh
+
+kibi: ./run-kibi.sh

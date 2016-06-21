@@ -27,6 +27,17 @@ ADD templates/opt/kibi-4.4.x/ /opt/kibi-${KIBI_44_VERSION}-linux-x64/config
 ADD patches /patches
 RUN patch -p1 -d "/opt/kibi-${KIBI_44_VERSION}-linux-x64" < /patches/0001-Set-authorization-header-when-connecting-to-ES.patch
 
+ENV OAUTH2_PROXY_VERSION 2.0.1.linux-amd64.go1.4.2
+
+# Install
+RUN curl -sL -o oauth2_proxy.tar.gz \
+    "https://github.com/bitly/oauth2_proxy/releases/download/v2.0.1/oauth2_proxy-${OAUTH2_PROXY_VERSION}.tar.gz" \
+  && tar xzvf oauth2_proxy.tar.gz \
+  && mv oauth2_proxy-${OAUTH2_PROXY_VERSION}/oauth2_proxy /opt \
+  && chmod +x /opt/oauth2_proxy \
+  && rm -r oauth2_proxy*
+
+
 # Add script that starts NGiNX in front of Kibana and tails the NGiNX access/error logs.
 ADD bin .
 RUN chmod 700 ./run-kibi.sh
