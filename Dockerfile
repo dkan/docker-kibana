@@ -41,6 +41,7 @@ RUN curl -sL -o oauth2_proxy.tar.gz \
 # Add script that starts NGiNX in front of Kibana and tails the NGiNX access/error logs.
 ADD bin .
 RUN chmod 700 ./run-kibi.sh
+RUN chmod 700 ./run-oauthproxy.sh
 
 # Add tests. Those won't run as part of the build because customers don't need to run
 # them when deploying, but they'll be run in test.sh
